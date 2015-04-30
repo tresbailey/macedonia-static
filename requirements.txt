@@ -1,0 +1,11 @@
+Jinja2
+Pygments
+Unidecode
+argparse
+blinker
+docutils
+feedgenerator
+pelican
+pytz
+six
+wsgiref
