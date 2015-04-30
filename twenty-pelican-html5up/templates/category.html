@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block title %}{{ category|striptags }} | {{ super() }}{% endblock title %}
+
+{% block content %}
+<!-- Main -->
+<article id="main">
+
+  <header class="special container">
+    {% with article = articles[0] %}
+    <span class="icon fa-{{ article.icon }}"></span>
+    {% endwith %}
+    <h2>{{ category }}</h2>
+  </header>
+
+    <!-- One -->
+    <section class="wrapper style4 container">
+
+        <div class="row oneandhalf">
+            {% if articles|length > 1 %}
+            {% for article in articles %}
+            <div class="6u">
+                <div class="content">
+                    <section>
+                        <header>
+                            <a href="{{ SITEURL }}/{{ article.url }}"><h3>{{ article.title }}</h3></a>
+                        </header>
+                        <p>{{ article.summary|striptags }}</p>
+                        <footer>
+                            <ul class="buttons">
+                                <li><a href="{{ SITEURL }}/{{ article.url }}" class="button small">Read More</a></li>
+                            </ul>
+                        </footer>
+                    </section>
+                </div>
+            </div>
+            {% endfor %}
+            {% else %}
+            {% with article = articles[0] %}
+            <div class="6u">
+                <div class="content">
+                  <section>
+                    <p>{{ article.content }}</p>
+                  </section>
+                </div>
+            </div>
+            {% endwith %}
+            {% endif %}
+
+
+        </div>
+    </section>
+
+</article>
+{% endblock content %}
