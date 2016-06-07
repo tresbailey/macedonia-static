@@ -1,0 +1,10 @@
+{% load pages_tags i18n mezzanine_tags %}
+{% spaceless %}
+{% for page in page_branch %}
+  <div class="categories">
+    <h2 class="softer standout" >{{ page.eventgallery.event_date }}</h2>
+    <a href="{{ page.get_absolute_url }}"><span class="softer">{{ page.title }}</span></a>
+  </div>
+{% endfor %}
+{% endspaceless %}
+

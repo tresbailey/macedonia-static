@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% load mezzanine_tags staticfiles %}
+
+
+{% block main %}
+{{ block.super }}
+
+{% editable page.gallery.content %}
+<article id="main-content" class="screen-box">
+<header class="special container">
+<div class="winger">
+{% block awesomeheader %}{% endblock %}
+</div>
+<h2 class="rusty">{{ page.title }}</h2>
+<div class="softer">
+{{ page.gallery.content|richtext_filters|safe }}
+</div>
+<div class="page-specific">
+{% block extracontent %}{% endblock %}
+</div>
+</article>
+
+{% endeditable %}
+
+
+<div class="gallery row">
+{% with page.gallery.images.all as images %}
+{% for image in images %}
+{% if not forloop.first %}
+<div class="col-xs-4 col-sm-3">
+    <a class="thumbnail" rel="#image-{{ image.id }}" title="{{ image.description }}" href="{{ image.file.url }}">
+        <img class="img-responsive" src="{{ MEDIA_URL }}{% thumbnail image.file 131 75 %}">
+    </a>
+</div>
+{% endif %}
+{% endfor %}
+{% endwith %}
+</div>
+{% endblock %}
+
+{% block extra_js %}
+{{ block.super }}
+<script src="{% static "mezzanine/js/magnific-popup.js" %}"></script>
+<script>
+$(document).ready(function() {
+    $('.gallery').magnificPopup({
+        delegate: 'a',
+        type: 'image',
+        gallery: {
+            enabled: true,
+        }
+    });
+});
+</script>
+{% endblock %}
+
+

@@ -1,0 +1,43 @@
+{% load mezzanine_tags %}
+
+{% editable_loader %}
+
+<script>
+{% if settings.GOOGLE_ANALYTICS_ID and not request.user.is_staff %}
+var _gaq = _gaq || [['_trackPageview']];
+_gaq.unshift(['_setAccount', '{{ settings.GOOGLE_ANALYTICS_ID }}']);
+(function(d, t) {
+    var g = d.createElement(t),
+        s = d.getElementsByTagName(t)[0];
+    g.async = true;
+    g.src = '//www.google-analytics.com/ga.js';
+    s.parentNode.insertBefore(g, s);
+})(document, 'script');
+{% endif %}
+</script>
+
+<script>
+
+$(document).ready(function() {
+  var scroll_in_count = 0;
+  var sw = new ScrollWatch({
+    watch: '[data-header-scroll-watch]',
+    watchOnce: false,
+    onElementInView: function(data) {
+      $('#main-header').slideDown();
+      scroll_in_count++;
+    },
+    onElementOutOfView: function(data) {
+      scroll_in_count--;
+      if (scroll_in_count == 0) {
+        $('#main-header').slideUp();
+      }
+    }
+  });
+  $('.toggleNav').on('click',function() {
+    $('.link-lockup').toggleClass('open');
+    return false;
+  });
+});
+
+</script>

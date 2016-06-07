@@ -1,0 +1,9 @@
+{% load pages_tags i18n %}
+
+{% spaceless %}
+<div class="dropdown-menu" aria-labelledby="pm-link-{{page.html_id}}">
+{% for page in page_branch %}
+  <a class="dropdown-item" href="{{ page.get_absolute_url }}">{{ page.title }}</a>
+{% endfor %}
+</div>
+{% endspaceless %}

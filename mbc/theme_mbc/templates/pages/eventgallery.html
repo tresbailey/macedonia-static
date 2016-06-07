@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+
+{% load mezzanine_tags staticfiles %}
+
+
+{% block main %}
+
+<article id="main-content" class="screen-box">
+<header class="special container">
+<div class="winger">
+<span class="fa fa-group"></span>
+</div>
+<h2 class="rusty">{{ page.title }}</h2>
+    <h2 class="softer standout" >{{ page.eventgallery.event_date }}</h2>
+<div class="softer">
+{{ page.eventgallery.content|richtext_filters|safe }}
+</div>
+<div class="page-specific">
+</div>
+</article>
+
+
+
+</div>
+{% endblock %}
+

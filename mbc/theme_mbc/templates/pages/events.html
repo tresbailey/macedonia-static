@@ -1,0 +1,9 @@
+{% extends "pages/page.html" %}
+{% load pages_tags i18n %}
+{% block awesomeheader %}
+<span class="fa fa-group"></span>
+{% endblock %}
+{% block extracontent %}
+  {% page_menu "pages/menus/event_list.html" page %}
+{% endblock %}
+

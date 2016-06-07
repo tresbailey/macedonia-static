@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% load mezzanine_tags staticfiles %}
+
+
+{% block main %}
+{{ block.super }}
+
+<article id="main-content" class="screen-box">
+<header class="special container">
+<div class="winger">
+<span class="fa fa-map"></span>
+</div>
+<h2 class="rusty">{{ page.title }}</h2>
+</article>
+
+<div id="map" class="gallery row">
+</div>
+{% endblock %}
+
+{% block extra_js %}
+{{ block.super }}
+<script>
+  function initMap() {
+    var mapDiv = document.getElementById('map');
+    var map = new google.maps.Map(mapDiv, {
+      center: {lat: 35.0770759, lng: -81.7620075},
+      zoom: 8
+    });
+  }
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?callback=initMap"
+         async defer></script>
+{% endblock %}
+
+

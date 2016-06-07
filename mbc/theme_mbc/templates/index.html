@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+{% load pages_tags  %}
+
+baa
+
+{% include 'banner.html' %}
+
+{% block main %}
+<!-- Main -->
+<article id="main">
+<div class="container-fluid primary-content tagline-box">
+    <div class="preliminary-menu">
+    {% page_menu "pages/menus/primary.html" %}
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="main-marquee">
+                <div class="jumbotron jumbotron-fluid">
+                    <div class="tagline-wrapper">
+                        {% if settings.SITE_TAGLINE %}
+                        <div class="main-tagline">{{ settings.SITE_TAGLINE }}</div>
+                        {% endif %}
+                    </div>
+                    <div class="sub-tagline">To Reach, Teach, and minister for Christ</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<article id="we-believe" class="screen-box">
+<header class="special container">
+<div class="winger">
+<span class="fa fa-plus"></span>
+</div>
+<h2 class="rusty">We Believe</h2>
+<div data-header-scroll-watch >&nbsp;</div>
+<ul class="buttons">
+    <li>We believe the Holy Bible is the Word of God written by men divinely inspired and is the sole authority for life and faith</li>
+    <li>We believe there is one and only one true God who exists in the eternal triune (three persons); the Father, the Son, and the Holy Spirit</li>
+    <li>God as Father reigns with providential care over His universe, His creatures, and human history according to the purposes of His grace</li>
+</ul>
+</header>
+</article>
+
+<article class="screen-box blued">
+<div data-header-scroll-watch >&nbsp;</div>
+<header class="special container">
+<header>
+<h2>We've got several groups and worship opportunities to help you find a place that you feel at home.</h2>
+</header>
+{% for page in page_branch %}
+{% if page.title == 'Ministries' %}
+{% page_menu "pages/menus/graphical.html" page %} 
+{% endif %}
+{% endfor %}
+<footer>
+<div data-header-scroll-watch >&nbsp;</div>
+<a href="events" class="btn btn-secondary btn-lg btn-block">Find Out More About Our Church Events</a>
+</footer>
+</header>
+</article>
+</article>
+
+<script>
+$(document).ready(function() {
+    $('#main-header').hide();
+});
+</script>
+{% endblock main %}
+
+

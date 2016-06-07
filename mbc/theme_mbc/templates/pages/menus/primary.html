@@ -1,0 +1,18 @@
+{% load pages_tags i18n %}
+
+{% spaceless %}
+    {% for page in page_branch %}
+    {% if page.is_primary and forloop.counter == 1 %}
+    <a href="#" class="toggleNav">☰ Menu</a>
+    {% endif %}
+    <div id="primary-menu-{{ page.html_id }}"
+        class="lockup-link-item {% if page.is_current_or_ascendant %}active{% endif %}{% if forloop.last %} last{% endif %} {% if page.has_children %}dropdown{% endif %}">
+        {% if page.in_menu %}
+        <a href="{{ page.get_absolute_url }}" id="pm-link-{{page.html_id}}" {% if page.has_children %}class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"{% endif %}>{{ page.title }}</a>
+            {% if page.has_children %}
+            {% page_menu "pages/menus/secondary.html" page %}
+            {%endif %}
+        {% endif %}
+    </div>
+    {% endfor %}
+{% endspaceless %}
