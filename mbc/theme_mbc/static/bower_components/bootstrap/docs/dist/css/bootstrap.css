@@ -6363,7 +6363,6 @@ footer {
   padding: .5rem;
   vertical-align: middle;
   border: 1px solid transparent;
-  border-right: 1px solid #ad005a;
 }
 
 .footer-link-item > a {
@@ -6379,6 +6378,7 @@ footer {
 
 .footer-link-item a {
   font-size: 1rem;
+  color: #3f81bb;
 }
 
 .link-lockup {

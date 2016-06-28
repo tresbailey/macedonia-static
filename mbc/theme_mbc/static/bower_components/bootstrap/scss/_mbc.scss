@@ -131,10 +131,10 @@ footer {
 
 .footer-link-item {
   @include link-menu-item();
-    border-right: 1px solid $cb-pink;
   vertical-align: middle;
   a {
     font-size: 1rem;
+    color: $cb-blue;
   }
 }
 
