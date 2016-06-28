@@ -26,6 +26,10 @@ if settings.USE_MODELTRANSLATION:
     )
 
 urlpatterns += patterns('',
+    url("^tithing/clientToken", "mbc.paypal_views.client_token", name="get_client_token_form"),
+    url("^tithing/pay", "mbc.paypal_views.send_payment", name="get_client_token_form"),
+    url("^tithing/nonce", "mbc.paypal_views.save_nonce", name="get_client_token_form"),
+    url("^tithing/", "mbc.views.online_giving", name="online_giving_form"),
     # We don't want to presume how your homepage works, so here are a
     # few patterns you can use to set it up.
 

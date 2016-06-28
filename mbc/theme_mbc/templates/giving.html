@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load mezzanine_tags i18n future %}
+
+{% block main %}
+<article id="online-giving" class="screen-box">
+<header class="special container">
+<div class="winger">
+<span class="fa fa-heart-o"></span>
+</div>
+<h2 class="rusty">{{ page.title }}</h2>
+<form id="beginGiving" name="givingStartForm" method="post" action="/tithing/">
+  {% fields_for begin_giving %}
+  <!--
+    <div class="value-fields control-group" style="display: flex; flex-direction: row; align-content: center">
+        <label class="control-label col-md-6" style="padding: 0px" for="name-value">
+            {{ field.label }}
+        </label>
+        <input type="text" name="name-value" style="width: initial">
+    </div>
+    -->
+    <input type="submit" value="Continue">
+</form>
+</article>
+{% endblock %}

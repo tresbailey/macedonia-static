@@ -1,0 +1,73 @@
+{
+  "Parameters" : {
+    "KeyName" : {
+      "Description" : "The EC2 Key Pair to allow SSH access to the instance",
+      "Type" : "AWS::EC2::KeyPair::KeyName",
+      "Default" : "macedonia"
+    },
+    "SampleInstanceType" : {
+        "Type" : "String",
+        "Default" : "t2.micro"
+    },
+    "SampleSecurityGroups" : {
+        "Type" : "CommaDelimitedList",
+        "Default" : "sg-24eb0042,sg-59957e3f"
+    },
+    "SampleSubnet" : {
+        "Type": "String",
+        "Default": "subnet-f3263984"
+    },
+    "AmiId" : {
+        "Type": "String",
+        "Default": "ami-2051294a"
+    }
+  },
+  "Resources" : {
+    "Ec2Instance" : {
+      "Type" : "AWS::EC2::Instance",
+      "Properties" : {
+        "SubnetId": { "Ref": "SampleSubnet" },
+        "SecurityGroupIds" : { "Ref" : "SampleSecurityGroups" },
+        "InstanceType" : { "Ref" : "SampleInstanceType" },
+        "KeyName" : { "Ref" : "KeyName"},
+        "ImageId" : { "Ref" : "AmiId" },
+        "Tags" : [
+          {"Key" : "Product", "Value" : "infra:sample" },
+          {"Key" : "Service", "Value" : "infra" },
+          {"Key" : "Name", "Value" : "tresback-mbc-mezzanine" },
+          {"Key" : "Network", "Value" : "private" }
+        ],
+        "UserData" : { "Fn::Base64" : { "Fn::Join" : [ "", [
+          "#!/bin/bash\n\n",
+          "yum update\n",
+          "tee /etc/yum.repos.d/docker.repo <<-'EOF'\n",
+          "[dockerrepo]\n",
+          "name=Docker Repository\n",
+          "baseurl=https://yum.dockerproject.org/repo/main/centos/7/\n",
+          "enabled=1\n",
+          "gpgcheck=1\n",
+          "gpgkey=https://yum.dockerproject.org/gpg\n",
+          "EOF\n",
+          "yum install -y docker-engine\n",
+          "curl -L https://github.com/docker/compose/releases/download/1.7.1/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose\n",
+          "chmod +x /usr/local/bin/docker-compose\n",
+          "yum install -y git gcc libjpeg-devel zlib-devel postgresql-devel python-devel\n",
+          "useradd -G wheel macedonia\n",
+          "echo macedonia:MBCAccess | chpasswd \n",
+          "mkdir -p /application/macedonia; cd /application/macedonia\n",
+          "git clone https://github.com/tresbailey/macedonia-static.git .\n",
+          "mkdir -p /application/compose; cd /application/compose\n",
+          "git clone https://tresbailey@bitbucket.org/tresbailey/figwork.git .\n",
+          "service docker start\n",
+          "PATH=$PATH:/usr/local/bin\n",
+          "export LANG=en_US\n"
+        ]
+        ]
+        }
+        }
+      }
+    }
+
+  }
+}
+
