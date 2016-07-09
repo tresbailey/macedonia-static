@@ -14,6 +14,7 @@ class ServiceRecording(Page):
     preacher_name = models.CharField(_("Preacher of the Service"), max_length=50, blank=True, null=True)
     mp3_location = models.URLField()
     ogg_location = models.URLField()
+    overview = RichTextField(_("Overview"), blank=True, null=True)
    
 
 class Giving(models.Model):
