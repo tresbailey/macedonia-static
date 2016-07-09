@@ -8,6 +8,12 @@ from mezzanine.pages.models import Page
 class EventGallery(Page):
     event_date = models.DateTimeField(verbose_name=_("Date of Event"))
     content = RichTextField(_("Content"))
+
+class ServiceRecording(Page):
+    service_date = models.DateTimeField(verbose_name=_("Date of Service"))
+    preacher_name = models.CharField(_("Preacher of the Service"), max_length=50, blank=True, null=True)
+    mp3_location = models.URLField()
+    ogg_location = models.URLField()
    
 
 class Giving(models.Model):

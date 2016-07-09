@@ -1,0 +1,12 @@
+{% extends "pages/ministries.html" %}
+{% load pages_tags i18n %}
+{% block extracontent %}
+    <h2 class="softer standout" >{{ page.servicerecording.service_date }}</h2>
+    <h2 class="softer" >{{ page.servicerecording.preacher_name }}</h2>
+<audio controls>
+<source src="{{ page.servicerecording.mp3_location }}" type="audio/mpeg">
+<source src="{{ page.servicerecording.ogg_location }}" type="audio/mpeg">
+    Your browser does not support the audio element.
+    </audio>
+{% endblock %}
+

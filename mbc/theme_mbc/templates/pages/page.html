@@ -6,7 +6,6 @@
 {% block main %}
 {{ block.super }}
 
-{% editable page.gallery.content %}
 <article id="main-content" class="screen-box">
 <header class="special container">
 <div class="winger">
@@ -14,17 +13,19 @@
 </div>
 <h2 class="rusty">{{ page.title }}</h2>
 <div class="softer">
+{% if page.gallery %}
 {{ page.gallery.content|richtext_filters|safe }}
+{% endif %}
 </div>
 <div class="page-specific">
 {% block extracontent %}{% endblock %}
 </div>
 </article>
 
-{% endeditable %}
 
 
 <div class="gallery row">
+{% if page.gallery %}
 {% with page.gallery.images.all as images %}
 {% for image in images %}
 {% if not forloop.first %}
@@ -36,6 +37,7 @@
 {% endif %}
 {% endfor %}
 {% endwith %}
+{% endif %}
 </div>
 {% endblock %}
 
