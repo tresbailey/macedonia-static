@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% load mezzanine_tags staticfiles %}
+
+
+{% block main %}
+{{ block.super }}
+
+<article id="main-content" class="screen-box" {% if page.gallery %}style="background-image: url('/static/images/light-bl.svg'), url('/static/images/light-br.svg'), url('/static/images/overlay.png'), url('{{page.gallery.images.all.1.file.url}}');
+  background-position: bottom left, bottom right, top left, center;
+  background-repeat: no-repeat, no-repeat, repeat, no-repeat;
+  background-size: 25em, 25em, auto, cover;"{% endif %}>
+  <div class="contrast-box">
+      <header class="special container">
+<div class="winger">
+{% block awesomeheader %}{% endblock %}
+</div>
+<h2 class="rusty">{{ page.title }}</h2>
+</header>
+<div class="softer">
+{% if page.gallery %}
+{{ page.gallery.content|richtext_filters|safe }}
+{% endif %}
+</div>
+<div class="page-specific">
+{% block extracontent %}{% endblock %}
+</div>
+</div>
+</article>
+
+{% endblock %}
+
+{% block extra_js %}
+{{ block.super }}
+<script src="{% static "mezzanine/js/magnific-popup.js" %}"></script>
+<script>
+$(document).ready(function() {
+    $('.gallery').magnificPopup({
+        delegate: 'a',
+        type: 'image',
+        gallery: {
+            enabled: true,
+        }
+    });
+});
+</script>
+{% endblock %}
+
+
+
