@@ -7120,6 +7120,12 @@ article#main .preliminary-menu .link-item .dropdown-menu .dropdown-item a {
       -ms-flex-direction: column;
 }
 
+#map {
+  width: 100%;
+  height: 400px;
+  background-color: grey;
+}
+
 @media all and (max-width: 850px) {
   .main-lockup {
             flex-direction: column;
