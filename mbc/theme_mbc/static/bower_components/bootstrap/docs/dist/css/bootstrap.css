@@ -3,6 +3,76 @@
  * Copyright 2011-2015 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
+#map {
+  height: 400px;
+  background-color: grey;
+}
+
+#floating-panel {
+  position: absolute;
+  top: 10px;
+  left: 25%;
+  z-index: 5;
+  padding: 5px;
+  padding-left: 10px;
+  font-family: 'Roboto','sans-serif';
+  line-height: 30px;
+  text-align: center;
+  background-color: #fff;
+  border: 1px solid #999;
+}
+
+#right-panel {
+  padding-left: 10px;
+  font-family: 'Roboto','sans-serif';
+  line-height: 30px;
+}
+
+#right-panel select, #right-panel input {
+  font-size: 15px;
+}
+
+#right-panel select {
+  width: 100%;
+}
+
+#right-panel i {
+  font-size: 12px;
+}
+
+#right-panel {
+  float: right;
+  width: 390px;
+  height: 100%;
+  overflow: auto;
+}
+
+#map {
+  margin-right: 400px;
+}
+
+#floating-panel {
+  display: none;
+  padding: 5px;
+  font-family: Arial;
+  font-size: 14px;
+  background: #fff;
+  border: 1px solid #ccc;
+  -webkit-box-shadow: 0 2px 2px rgba(33, 33, 33, .4);
+          box-shadow: 0 2px 2px rgba(33, 33, 33, .4);
+}
+
+@media print {
+  #map {
+    height: 500px;
+    margin: 0;
+  }
+  #right-panel {
+    float: none;
+    width: auto;
+  }
+}
+
 /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
 html {
   font-family: sans-serif;
@@ -7120,10 +7190,8 @@ article#main .preliminary-menu .link-item .dropdown-menu .dropdown-item a {
       -ms-flex-direction: column;
 }
 
-#map {
-  width: 100%;
-  height: 400px;
-  background-color: grey;
+.help-block {
+  color: red;
 }
 
 @media all and (max-width: 850px) {
