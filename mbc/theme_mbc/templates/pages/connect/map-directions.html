@@ -18,11 +18,12 @@
     <script>
       
       var churchLocation = {lat: 35.076654, lng: -81.761685};
+      var map;
       function initMap() {
         var directionsDisplay = new google.maps.DirectionsRenderer;
         var directionsService = new google.maps.DirectionsService;
         var mapDiv = document.getElementById('map');
-        var map = new google.maps.Map(mapDiv, {
+        map = new google.maps.Map(mapDiv, {
             center: churchLocation,
             zoom: 15
         });
@@ -54,6 +55,7 @@
           directionsDisplay.setDirections({routes: []});
           return;
         }
+        directionsDisplay.setMap(map);
         var end = churchLocation;
         directionsService.route({
           origin: start,

@@ -1,13 +1,10 @@
-{% extends "base.html" %}
+{% extends "pages/stretch-page.html" %}
 {% load mezzanine_tags i18n future %}
 
-{% block main %}
-<article id="online-giving" class="screen-box">
-<header class="special container">
-<div class="winger">
+{% block awesomeheader %}
 <span class="fa fa-heart-o"></span>
-</div>
-<h2 class="rusty">{{ page.title }}</h2>
+{% endblock %}
+{% block extracontent %}
 <form id="beginGiving" name="givingStartForm" method="post" action="/tithing/">
   {% fields_for begin_giving %}
     <input type="submit" value="Continue">
