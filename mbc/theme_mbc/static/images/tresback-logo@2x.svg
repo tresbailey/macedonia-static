@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="303.943" height="303.645" viewBox="0 0 1022 1021">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #5888c2;
+      }
+
+      .cls-2 {
+        font-size: 804.167px;
+      }
+
+      .cls-2, .cls-3, .cls-4 {
+        fill: #fff;
+      }
+
+      .cls-2, .cls-4 {
+        font-family: "Aerolite Bold";
+      }
+
+      .cls-3 {
+        font-size: 1066.667px;
+        font-family: tsunami;
+      }
+
+      .cls-4 {
+        font-size: 770.833px;
+      }
+    </style>
+  </defs>
+  <ellipse class="cls-1" cx="511" cy="510.5" rx="511" ry="510.5"/>
+  <text id="t" class="cls-2" x="131.953" y="579.813">t</text>
+  <text id="b" class="cls-3" x="470.391" y="809.953">b</text>
+  <text id="_3" data-name="3" class="cls-4" x="274.219" y="997.758">3</text>
+</svg>
