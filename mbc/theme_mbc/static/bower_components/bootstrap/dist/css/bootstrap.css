@@ -7190,6 +7190,7 @@ article#main .preliminary-menu .link-item .dropdown-menu .dropdown-item a {
 .contrast-box .softer pre {
   color: #818a91;
   text-align: left;
+  white-space: pre-wrap;
 }
 
 .help-block {

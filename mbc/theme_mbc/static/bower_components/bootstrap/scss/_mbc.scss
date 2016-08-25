@@ -622,6 +622,7 @@ article#main {
     pre {
       color: $gray-light;
       text-align: left;
+      white-space: pre-wrap;
     }
   }
 }
