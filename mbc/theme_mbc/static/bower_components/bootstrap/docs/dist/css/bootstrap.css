@@ -6311,6 +6311,14 @@ a:hover, a:active, a:focus {
   text-decoration: none;
 }
 
+pre {
+  font-family: sans-serif;
+}
+
+pre a {
+  color: #3f81bb;
+}
+
 .col-md-12 {
   padding-right: 0;
   padding-left: 0;
@@ -7177,6 +7185,11 @@ article#main .preliminary-menu .link-item .dropdown-menu .dropdown-item a {
   -webkit-box-direction: normal;
   -webkit-flex-direction: column;
       -ms-flex-direction: column;
+}
+
+.contrast-box .softer pre {
+  color: #818a91;
+  text-align: left;
 }
 
 .help-block {

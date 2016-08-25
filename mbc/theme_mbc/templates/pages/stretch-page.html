@@ -18,9 +18,13 @@
 <h2 class="rusty">{{ page.title }}</h2>
 </header>
 <div class="softer">
-{% if page.gallery %}
+    {% if page.gallery %}
+    {% block basecontent %}
+    <pre>
 {{ page.gallery.content|richtext_filters|safe }}
-{% endif %}
+    </pre>
+    {% endblock %}
+    {% endif %}
 </div>
 <div class="page-specific">
 {% block extracontent %}{% endblock %}

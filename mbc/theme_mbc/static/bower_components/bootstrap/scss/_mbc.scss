@@ -27,6 +27,13 @@ a {
   }
 }
 
+pre {
+  font-family: sans-serif;
+  a {
+    color: $cb-blue;
+  }
+}
+
 .col-md-12 {
   padding-right: 0px;
   padding-left: 0px;
@@ -611,6 +618,12 @@ article#main {
   background-color: #f7f7f9; 
   padding: 3rem;
   text-align: center;
+  .softer {
+    pre {
+      color: $gray-light;
+      text-align: left;
+    }
+  }
 }
 
 .help-block {

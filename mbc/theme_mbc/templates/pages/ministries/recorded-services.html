@@ -1,6 +1,8 @@
 {% extends "pages/ministries.html" %}
-{% load pages_tags i18n %}
+{% load mezzanine_tags pages_tags i18n %}
+    {% block basecontent %}
+{{ page.gallery.content|richtext_filters|safe }}
+    {% endblock %}
 {% block extracontent %}
   {% page_menu "pages/menus/recordings.html" page %}
 {% endblock %}
-
