@@ -2,16 +2,18 @@
 
 {% spaceless %}
 <nav class="link-graphical">
-        {% for page in page_branch %}
-    <a href="{{ page.get_absolute_url }}">
-        <div id="graphical-menu-{{ page.html_id }}"
-            style="background-image: url('{{MEDIA_URL }}{{ page.gallery.images.all.0.file }}'); background-size: cover" 
-            class="graphical-link-item">
-        <div class="figure-caption">
-            <div>{{ page.title }}</div>
-        </div>
-        </div>
-    </a>
-        {% endfor %}
+{% for page in page_branch %}
+{% if page.in_menu %}
+<a href="{{ page.get_absolute_url }}">
+  <div id="graphical-menu-{{ page.html_id }}"
+    style="background-image: url('{{MEDIA_URL }}{{ page.gallery.images.all.0.file }}'); background-size: cover" 
+    class="graphical-link-item">
+    <div class="figure-caption">
+      <div>{{ page.title }}</div>
+    </div>
+  </div>
+</a>
+{% endif %}
+{% endfor %}
 </nav>
 {% endspaceless %}

@@ -31,6 +31,10 @@ pre {
   font-family: sans-serif;
   a {
     color: $cb-blue;
+    &:hover, &:active, &:focus {
+      color: $gray;
+      text-decoration: none;
+    }
   }
 }
 

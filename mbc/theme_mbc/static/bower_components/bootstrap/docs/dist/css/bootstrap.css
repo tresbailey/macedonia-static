@@ -6319,6 +6319,11 @@ pre a {
   color: #3f81bb;
 }
 
+pre a:hover, pre a:active, pre a:focus {
+  color: #55595c;
+  text-decoration: none;
+}
+
 .col-md-12 {
   padding-right: 0;
   padding-left: 0;
