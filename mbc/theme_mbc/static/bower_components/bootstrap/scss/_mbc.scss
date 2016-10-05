@@ -358,6 +358,7 @@ footer {
   font-size: 2rem;
   margin: 1rem;
   padding: 1rem;
+  background-color: white;
 
   &:hover {
     @include graphical-link-overlay();
@@ -744,6 +745,7 @@ article#main {
   .graphical-link-item {
     min-width: 90%;
     border: 2px solid $cb-blue;
+    justify-content: flex-start;
     .figure-caption {
       @include graphical-link-overlay();
         color: $cb-pink;

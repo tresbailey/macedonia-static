@@ -6790,6 +6790,7 @@ footer {
   padding: 1rem;
   margin: 1rem;
   font-size: 2rem;
+  background-color: white;
 
   -webkit-box-pack: end;
   -webkit-justify-content: flex-end;
@@ -7364,6 +7365,11 @@ article#main .preliminary-menu .link-item .dropdown-menu .dropdown-item a {
   .graphical-link-item {
     min-width: 90%;
     border: 2px solid #3f81bb;
+
+    -webkit-box-pack: start;
+    -webkit-justify-content: flex-start;
+    -ms-flex-pack: start;
+            justify-content: flex-start;
   }
   .graphical-link-item .figure-caption {
     color: #ad005a;
