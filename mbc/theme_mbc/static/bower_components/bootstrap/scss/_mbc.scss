@@ -646,6 +646,18 @@ article#main {
     margin-top: .6rem;
 }
 
+.nav-footer {
+  ul {
+    margin-left: initial;
+    text-align: center;
+  }
+  display: flex;
+  margin: 0 auto;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
 @media all and (max-width: 850px) {
   .main-lockup {
     flex-direction: column;
@@ -779,5 +791,8 @@ article#main {
     }
   }
 
+  .nav-footer {
+      flex-direction: column;
+  }
 }
 
