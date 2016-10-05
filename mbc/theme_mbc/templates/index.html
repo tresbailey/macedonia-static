@@ -55,8 +55,12 @@ baa
 {% endif %}
 {% endfor %}
 <footer>
+{% for page in page_branch %}
+{% if page.title == 'Events' %}
 <div data-header-scroll-watch >&nbsp;</div>
 <a href="events" class="btn btn-secondary btn-lg btn-block">Find Out More About Our Church Events</a>
+{% endif %}
+{% endfor %}
 </footer>
 </header>
 </article>

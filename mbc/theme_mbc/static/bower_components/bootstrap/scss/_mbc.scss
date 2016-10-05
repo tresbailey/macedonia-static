@@ -135,6 +135,7 @@ footer {
 .footer-lockup {
   line-height: 2rem;
   @include link-menu();
+  font-size: .5rem;
 }
 
 .footer-link-item {
@@ -157,6 +158,10 @@ footer {
 
 .lockup-link-item {
   @include link-menu-item();
+  &:last-of-type .dropdown-menu {
+    right: 0;
+    left: initial;
+  }
 }
 
 /* Remove this if i dont use nested menu */
@@ -636,7 +641,8 @@ article#main {
 }
 
 .tb-logo {
-    height: 2rem;
+    height: 0.8rem;
+    margin-top: .6rem;
 }
 
 @media all and (max-width: 850px) {
@@ -692,6 +698,7 @@ article#main {
   .footer-lockup {
     flex-direction: column;
     line-height: 2;
+    align-items: center;
     .footer-link-item {
       border: none;
         padding: 0 1rem;
@@ -759,10 +766,14 @@ article#main {
     padding-left: 0rem;
   }
   }
-
+  
+  .contrast-box {
+    padding: 1rem;
+  }
+  
   .special {
     .rusty, .fa {
-      font-size: 3rem;
+      font-size: 2rem;
     }
   }
 
