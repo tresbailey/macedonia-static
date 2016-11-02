@@ -7187,7 +7187,7 @@ article#main .preliminary-menu .link-item .dropdown-menu .dropdown-item a {
   display: -webkit-flex;
   display: -ms-flexbox;
   display:         flex;
-  width: 85vw;
+  width: 65vw;
   padding: 3rem;
   text-align: center;
           flex-direction: column;
@@ -7256,6 +7256,17 @@ article#main .preliminary-menu .link-item .dropdown-menu .dropdown-item a {
   .screen-box#main-content {
     margin-top: 10rem;
   }
+}
+
+img.profile {
+  width: 25rem;
+  height: 25rem;
+  border-radius: 50%;
+}
+
+img.profile.summary {
+  width: 10rem;
+  height: 10rem;
 }
 
 @media all and (max-width: 500px) {

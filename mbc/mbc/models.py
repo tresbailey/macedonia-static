@@ -23,3 +23,9 @@ class Giving(models.Model):
     amount = models.IntegerField(_('Amount to Give'))
     transaction_id = models.CharField(_('Card Transaction ID'), max_length=50, blank=True, null=True)
 
+
+class Newsletter(models.Model):
+    newsletter_date = models.DateTimeField(verbose_name=_("Date of Newsletter"))
+    file_name = models.CharField(_('Newsletter File Name'), max_length=50, blank=True, null=True)
+    upload = models.FileField(upload_to='news', blank=True, null=True)
+

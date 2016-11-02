@@ -6,22 +6,45 @@
 {% block main %}
 {{ block.super }}
 
-{% editable page.gallery.content %}
-<article id="we-believe" class="screen-box">
+<article id="main-content" class="screen-box">
 <header class="special container">
 <div class="winger">
-<span class="fa fa-sun-o"></span>
+{% block awesomeheader %}{% endblock %}
 </div>
 <h2 class="rusty">{{ page.title }}</h2>
-{% with value|length as length %}
-{{length}}
-{{ page.gallery.content|richtext_filters|safe|truncatechars:length }}
+<div class="softer">
+{% if page.gallery %}
+{{ page.description }}
+{% endif %}
+</div>
+<div class="screen-box">
+<div class="row">
+{% if page.gallery %}
+{% with page.gallery.images.all as images %}
+{% for image in images %}
+{% if forloop.first %}
+<div class="col-md-5">
+    <a class="thumbnail" rel="#image-{{ image.id }}" title="{{ image.description }}" href="{{ image.file.url }}">
+        <img class="img-responsive profile" src="{{ MEDIA_URL }}{% thumbnail image.file 131 75 %}">
+    </a>
+  </div>
+  <div class="col-md-7">
+{% if page.gallery %}
+{{ page.gallery.content|richtext_filters|safe }}
+{% endif %}
+  </div>
+{% endif %}
+{% endfor %}
 {% endwith %}
+{% endif %}
+</div>
+</div>
 </article>
 
-{% endeditable %}
+
 
 <div class="gallery row">
+{% if page.gallery %}
 {% with page.gallery.images.all as images %}
 {% for image in images %}
 {% if not forloop.first %}
@@ -33,6 +56,7 @@
 {% endif %}
 {% endfor %}
 {% endwith %}
+{% endif %}
 </div>
 {% endblock %}
 
@@ -51,4 +75,5 @@ $(document).ready(function() {
 });
 </script>
 {% endblock %}
+
 

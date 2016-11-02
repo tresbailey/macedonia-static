@@ -624,7 +624,7 @@ article#main {
 .contrast-box {
   display: flex; 
   flex-direction: column; 
-  width: 85vw; 
+  width: 65vw; 
   background-color: #f7f7f9; 
   padding: 3rem;
   text-align: center;
@@ -668,6 +668,16 @@ article#main {
 
   .screen-box#main-content {
     margin-top: 10rem;
+  }
+}
+
+img.profile {
+  width: 25rem;
+  height: 25rem;
+  border-radius: 50%;
+  &.summary {
+    width: 10rem;
+    height: 10rem;
   }
 }
 

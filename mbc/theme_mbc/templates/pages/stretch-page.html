@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% load mezzanine_tags staticfiles %}
+{% load mezzanine_tags staticfiles mbc_filters %}
 
 
 {% block main %}
@@ -21,7 +21,7 @@
     {% if page.gallery %}
     {% block basecontent %}
     <pre>
-{{ page.gallery.content|richtext_filters|safe }}
+{{ page.gallery.content|richtext_filters|replace_linebr|safe }}
     </pre>
     {% endblock %}
     {% endif %}
