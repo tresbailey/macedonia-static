@@ -29,3 +29,9 @@ class Newsletter(models.Model):
     file_name = models.CharField(_('Newsletter File Name'), max_length=50, blank=True, null=True)
     upload = models.FileField(upload_to='news', blank=True, null=True)
 
+
+class ContactList(models.Model):
+    mailing_list = models.CharField(_('Mailing List Name'), max_length=50, blank=True, null=True)
+    email_alias = models.EmailField(_('Email Alias'))
+    upload = models.FileField(upload_to='contacts', blank=True, null=True)
+
