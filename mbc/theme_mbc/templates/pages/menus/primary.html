@@ -8,11 +8,22 @@
         {% if page.in_menu %}
     <div id="primary-menu-{{ page.html_id }}"
         class="lockup-link-item {% if page.is_current_or_ascendant %}active{% endif %}{% if forloop.last %} last{% endif %} {% if page.has_children %}dropdown{% endif %}">
-        <a href="{{ page.get_absolute_url }}" id="pm-link-{{page.html_id}}" {% if page.has_children %}class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"{% endif %}>{{ page.title }}</a>
+        <a href="{{ page.get_absolute_url }}" id="pm-link-{{page.html_id}}" >{{ page.title }}</a>
+        {% if page.has_children %}
+        <a class="nav-link dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+            <span class="fa fa-caret-down"></span>
+            <span class="sr-only">Toggle Dropdown</span>
+        </a>
+        {% endif %}
             {% if page.has_children %}
             {% page_menu "pages/menus/secondary.html" page %}
             {%endif %}
     </div>
         {% endif %}
     {% endfor %}
+    {% if not request.user.is_authenticated %}
+    <div class="lockup-link-item">
+    <a href="#" data-toggle="modal" data-target="#loginModal">Login</a> 
+    </div>
+    {% endif %}
 {% endspaceless %}

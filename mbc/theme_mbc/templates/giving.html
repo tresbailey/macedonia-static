@@ -1,9 +1,6 @@
 {% extends "pages/stretch-page.html" %}
 {% load mezzanine_tags i18n future %}
 
-{% block awesomeheader %}
-<span class="fa fa-heart-o"></span>
-{% endblock %}
 {% block extracontent %}
 <form id="beginGiving" name="givingStartForm" method="post" action="/tithing/">
   {% fields_for begin_giving %}

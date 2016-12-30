@@ -225,13 +225,18 @@ INSTALLED_APPS = (
     "mezzanine.forms",
     "mezzanine.galleries",
     "mezzanine.twitter",
-    # "mezzanine.accounts",
+     "mezzanine.accounts",
     # "mezzanine.mobile",
 )
 
 SITE_TAGLINE="Macedonia Baptist Church"
 SITE_SUB_TAGLINE='To reach, teach, and minister for Christ'
 INLINE_EDITING_ENABLED=False
+
+ACCOUNTS_NO_USERNAME=True
+ACCOUNTS_VERIFICATION_REQUIRED=False
+
+TINYMCE_SETUP_JS='js/tinymce_setup.js'
 
 # List of processors used by RequestContext to populate the context.
 # Each one should be a callable that takes the request object as its

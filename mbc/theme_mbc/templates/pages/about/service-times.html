@@ -1,2 +1,21 @@
-{% extends "pages/about.html" %}
-
+{% extends "pages/page.html" %}
+{% load pages_tags i18n mezzanine_tags staticfiles mbc_filters %}
+{% block extracontent %}
+{% spaceless %}
+{% for day, event_list in object_list.items %}
+<h2>{{ day }}</h2>
+    {% for event in event_list %}
+  <div class="categories list-alternator stretch-across listed">
+    <div>
+        <h5 class="softer standout" >
+    <a href="{{ event.get_absolute_url }}"><span class="softer">{{ event.scheduled_time }}</span></a>
+        </h5>
+    <div class="category-controls">
+    <a href="{{ event.get_absolute_url }}"><span class="softer">{{ event.title }}</span></a>
+    </div>
+    </div>
+</div>
+    {% endfor %}
+{% endfor %}
+{% endspaceless %}
+{% endblock %}

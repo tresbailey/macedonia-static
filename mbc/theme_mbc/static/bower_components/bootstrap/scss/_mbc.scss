@@ -20,10 +20,10 @@ body {
 
 a {
   text-decoration: none;
-  color: white;
+  color: $cb-blue;
   &:hover, &:active, &:focus {
     text-decoration: none;
-    color: white;
+    color: $cb-blue;
   }
 }
 
@@ -38,9 +38,31 @@ pre {
   }
 }
 
+ul {
+  list-style-type: none;
+}
+
+@mixin flex-column() {
+  display: flex;
+  flex-direction: column;
+}
+
+@mixin flex-row() {
+  display: flex;
+  flex-direction: row;
+}
+
 .col-md-12 {
   padding-right: 0px;
   padding-left: 0px;
+}
+
+.flex-column {
+  @include flex-column();
+}
+
+.flex-row {
+  @include flex-row();
 }
 
 .product-sorting {
@@ -54,10 +76,11 @@ pre {
 }
 
 .navbar-default {
-  background-color: $cb-blue;
-  color: white;
+  background-color: white;
+  color: $cb-blue;
+  border-bottom: 2px solid $cb-blue;
   & > a {
-    color: white;
+    color: $cb-blue;
   }
 }
 
@@ -90,21 +113,21 @@ footer {
 }
 
 .lockup-logo {
-  flex: 3;
+  flex: 2;
   font-size: xx-large;
   font-weight: 500;
   a {
-    color: white;
+    color: $cb-blue;
+  }
+  img {
+    width: 10rem;
   }
 }
 
-.lockup-logo img {
-  max-width: 100%;
-}
-
 .icon-lockup {
-  padding-left: .5rem;
-  padding-right: .5rem;
+  justify-content: flex-end;
+  padding: .5rem;
+  padding-bottom: 0px;
 }
 
 
@@ -112,22 +135,24 @@ footer {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  padding-top: .5rem;
-  padding-bottom: .5rem;
   min-height: 1rem;
+  align-items: flex-end;
 }
 
 @mixin link-menu-item() {
-  padding: .5rem;
+  padding: 0rem .5rem 0rem .5rem;
   border: 1px solid transparent;
   & > a {
-    color: white;
+    color: $cb-blue;
     text-transform: uppercase;
-    font-weight: 100;
-    font-size: .9rem;
+    font-size: 1.1rem;
+    padding-right: .5rem;
+    &.dropdown-toggle-split {
+      padding-right: 0rem;
+    }
   }
   &:hover {
-    border: 1px solid white;
+    border: 1px solid $cb-blue;
   }
 
 }
@@ -136,6 +161,7 @@ footer {
   line-height: 2rem;
   @include link-menu();
   font-size: .5rem;
+  align-items: flex-start;
 }
 
 .footer-link-item {
@@ -149,7 +175,8 @@ footer {
 
 .link-lockup {
   @include link-menu();
-
+  flex: 2;
+  justify-content: flex-end;
 }
 
 .toggleNav {
@@ -171,7 +198,6 @@ footer {
 
 .screen-box {
   min-height: 100vh;
-  background-image: url("/static/images/dark-tl.svg"), url("/static/images/dark-tr.svg"), url("/static/images/dark-bl.svg"), url("/static/images/dark-br.svg");
   background-position: top left, top right, bottom left, bottom right;
   background-repeat: no-repeat;
   background-size: 25em;
@@ -180,7 +206,7 @@ footer {
   align-items: center;
   justify-content: center;
   &#main-content {
-    margin-top: 5rem;
+    margin-top: 7rem;
   }
 
   &.blued {
@@ -193,10 +219,8 @@ footer {
 .tagline-box {
   height: 100vh;
   background-color: #645862;
-  background-image: url("/static/images/light-bl.svg"), url("/static/images/light-br.svg"), url("/static/images/overlay.png"), url("/static/images/blurred-sanctuary.jpg");
-  background-position: bottom left, bottom right, top left, center;
-  background-repeat: no-repeat, no-repeat, repeat, no-repeat;
-  background-size: 25em, 25em, auto, cover;
+  // background-image: url("/static/images/blurred-sanctuary.jpg");
+  background-size: cover;
   color: white;
   cursor: default;
 }
@@ -206,37 +230,34 @@ footer {
   justify-content: center;
 
   .jumbotron-fluid {
-    background-color: $cb-blue;
+      background-color: transparent;
       color: white;
       display: flex;
       flex-direction: column;
       align-items: center;
       padding-left: 4rem;
       padding-right: 4rem;
+      padding-top: 10rem;
   }
 }
 
 .tagline-wrapper {
   display: inline-block;
-  border-bottom: solid 2px;
-  border-top: solid 2px;
-  margin: 0 0 2em 0;
-  padding: 3px 0 3px 0;
   display: flex;
 }
 
 .main-tagline {
   line-height: 3.5rem;
-  color: white;
+  color: $cb-blue;
   align-items: center;
-  border-bottom: solid 2px;
-  border-top: solid 2px;
   font-size: 2.5em;
   font-weight: 900;
   letter-spacing: 0.2em;
   margin: 0;
-  text-transform: uppercase;
   text-align: center;
+  img {
+    width: 65vw;
+  }
 }
 
 .sub-tagline {
@@ -415,16 +436,43 @@ footer {
 
 .categories {
   display: flex;
-  flex-direction: column;
+  // flex-direction: row;
   align-items: center;
-  width: 30rem;
+  width: 100%;
   margin-top: 3rem;
-  &:first-child {
-    margin-top: 0;
+  &.flex-row > * {
+    width: 15rem;
+  }
+  *:not(:first-child) {
+    width: 100%;
   }
   
   .btn {
     width: 10rem;
+  }
+  &.listed {
+    margin-top: 0rem;
+    padding-top: 1rem;
+    div {
+      width: 100%;
+    }
+    .category-controls {
+      padding: 0rem;
+    }
+  }
+}
+
+.stretch-across {
+  width: 80vw;
+}
+
+.list-alternator {
+  color: white;
+  &:nth-child(even) {
+    background-color: initial;
+  }
+  &:nth-child(odd) {
+    background-color: $gray-lightest;
   }
 }
 
@@ -539,17 +587,25 @@ button > i.fa-cart-plus {
   flex-direction: column;
   align-items: center;
   text-align: center;
+  width: 100%;
   .rusty, .fa {
     color: $cb-blue;
     font-size: 4rem;
   }
   .fa {
     margin: 0 1rem;
+    &.cross {
+      background-image: url(/static/images/logo.png);
+      background-repeat: no-repeat;
+      background-size: cover;
+      width: 5rem;
+      height: 6rem;
+      margin-top: -1rem;
+    }
   }
   .winger {
     display: flex;
     width: 100%;
-    padding-bottom: 4rem;
 
     &:before, &:after {
       height: .8rem;
@@ -569,15 +625,34 @@ button > i.fa-cart-plus {
   }
 }
 
-article#main {
+// article#main {
   .preliminary-menu {
     display: flex;
     width: 100%;
     justify-content: flex-end;
-    padding-top: 2rem;
-    padding-bottom: 4rem;
+    background-color: transparent;
+    flex-direction: column;
+    position: absolute;
+    &.navbar-default {
+      background-color: transparent;
+      border: none;
+      color: white;
+      a {
+        color: white;
+      }
+    }
 
-    .link-item {
+  .main-lockup {
+    width: 100%;
+    justify-content: space-between;
+    .lockup-logo {
+      display: none;
+    }
+    .icon-lockup {
+      padding: .5rem;
+    }
+    .link-lockup {
+    .lockup-link-item {
       padding: .5rem;
       border: 1px solid transparent;
       a {
@@ -601,8 +676,10 @@ article#main {
         }
       }
     }
+    }
   }
-}
+  }
+// }
 
 .figure-caption {
   color: $cb-pink;
@@ -618,7 +695,14 @@ article#main {
 }
 
 .standout {
-  color: $cb-green;
+  color: $cb-blue;
+  a {
+    &:hover, &:active, &:focus {
+      color: $cb-blue;
+      text-decoration: none;
+    }
+    color: $cb-blue;
+  }
 }
 
 .contrast-box {
@@ -631,13 +715,26 @@ article#main {
   .softer {
     pre {
       color: $gray-light;
-      text-align: left;
+      text-align: center;
       white-space: pre-wrap;
+    }
+  }
+  .page-specific {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    .categories {
+      flex-direction: column;
+      width: 20rem;
+      margin-top: 0rem;
+      .category-controls {
+        display: none;
+      }
     }
   }
 }
 
-.help-block {
+.error-block {
   color: red;
 }
 
@@ -654,21 +751,13 @@ article#main {
   display: flex;
   margin: 0 auto;
   flex-direction: row;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
 }
 
-@media all and (max-width: 850px) {
-  .main-lockup {
-    flex-direction: column;
-    .lockup-logo {
-      text-align: center;
-    }
-  }
-
-  .screen-box#main-content {
-    margin-top: 10rem;
-  }
+.row {
+  margin-left: initial;
+  margin-right: initial;
 }
 
 img.profile {
@@ -681,10 +770,41 @@ img.profile {
   }
 }
 
+.form-group ul {
+  list-style-type: none;
+}
+
+.help-text {
+  text-transform: capitalize;
+}
+
+.dropdown-toggle-split {
+  padding-left: .5rem;
+}
+
+@media all and (max-width: 850px) {
+  .main-lockup {
+    flex-direction: column;
+    .lockup-logo {
+      text-align: center;
+    }
+  }
+
+  .screen-box#main-content {
+    margin-top: 7rem;
+  }
+}
+
 @media all and (max-width:500px) {
 
   .col-md-12 {
     width: 100vw;
+  }
+
+  .lockup-logo {
+    img {
+      max-width: 10rem;
+    }
   }
 
   .link-lockup {
@@ -724,7 +844,7 @@ img.profile {
     align-items: center;
     .footer-link-item {
       border: none;
-        padding: 0 1rem;
+      padding: 0 1rem;
     }
   }
 

@@ -2,7 +2,7 @@
 
 {% spaceless %}
 {% for page in page_branch %}
-  <div class="categories">
+  <div class="categories flex-column">
     <h2 class="softer standout" >{{ page.title }}</h2>
     <span class="softer">{{ page.description }}</span>
     <a href="{{ page.get_absolute_url }}" class="btn btn-secondary btn-lg btn-block text-uppercase">Listen</a>

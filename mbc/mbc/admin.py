@@ -1,19 +1,34 @@
+from datetime import date, timedelta, datetime
+from dateutil import parser
 from django.contrib import admin
 import base64
 import csv
 import json
+import pytz
 import requests
 import os
 
 from mezzanine.core.admin import BaseTranslationModelAdmin
 from mezzanine.pages.admin import PageAdmin, PageAdminForm
-from mbc.models import EventGallery, ServiceRecording, Newsletter, ContactList
+from mbc.models import EventGallery, ServiceRecording, \
+    Newsletter, ContactList, SmallGroup
 
 import logging
 logging.basicConfig(filename='example.log',level=logging.DEBUG)
 
-admin.site.register(EventGallery, PageAdmin)
-admin.site.register(ServiceRecording, PageAdmin)
+
+API_KEY = 'kLMCS5fYlOSnPhzTYsqe8Vb79glWL9c9Wiqzubci'
+
+
+def send_to_s3_gateway(prefix, file_name, data, bucket='macedonia-static-site', b64_encoded=True):
+    url = 'https://pgmas4i5zb.execute-api.us-east-1.amazonaws.com/prod/apps/MBC/buckets/%s/items/%s/%s' % (bucket, prefix, file_name)
+    if b64_encoded:
+        url = url + '.b64'
+        data = base64.b64encode(data)
+    resp = requests.put(url, data=data, headers={'X-API-KEY': API_KEY})
+    logging.debug('Response was %s' % resp.text)
+    return 'https://s3.amazonaws.com/%s/%s/%s' % (bucket, prefix, file_name)
+
 
 class NewsletterAdminForm(PageAdminForm):
   def save(self, force_insert=False, force_update=False, commit=True):
@@ -38,10 +53,9 @@ class NewsletterAdmin(BaseTranslationModelAdmin):
         """
         obj.file_name = os.path.basename(obj.upload.path)
         obj.save()
-        API_KEY = 'kLMCS5fYlOSnPhzTYsqe8Vb79glWL9c9Wiqzubci'
-        url = 'https://pgmas4i5zb.execute-api.us-east-1.amazonaws.com/prod/apps/MBC/buckets/macedonia-static-site/items/newsletters/%s.b64' % obj.file_name
-        resp = requests.put(url, data=base64.b64encode(obj.upload.read()), headers={'X-API-KEY': API_KEY})
-        logging.debug('Response was %s' % resp.text)
+        bucket = 'macedonia-static-site'
+        prefix = 'newsletters'
+        send_to_s3_gateway(prefix, obj.file_name, obj.upload.read())
 
 
 
@@ -56,10 +70,10 @@ class ContactListAdmin(BaseTranslationModelAdmin):
         Given a model instance save it to the database.
         """
         obj.save()
-        API_KEY = 'kLMCS5fYlOSnPhzTYsqe8Vb79glWL9c9Wiqzubci'
-        url = 'https://pgmas4i5zb.execute-api.us-east-1.amazonaws.com/prod/apps/MBC/buckets/macedonia-static-site/items/contact-lists/%s' % os.path.basename(obj.upload.path)
-        resp = requests.put(url, data=obj.upload.read(), headers={'X-API-KEY': API_KEY})
-        logging.debug('Response was %s' % resp.text)
+        bucket = 'macedonia-static-site'
+        prefix = 'contact-lists'
+        file_name = os.path.basename(obj.upload.path)
+        send_to_s3_gateway(prefix, file_name, obj.upload.read())
         contact_list = csv.reader(obj.upload)
         contact_list = [{'address': cont[2], 'name': '%s %s' % (cont[0], cont[1])} 
             for cont in contact_list]
@@ -76,3 +90,54 @@ class ContactListAdmin(BaseTranslationModelAdmin):
 
 admin.site.register(ContactList, ContactListAdmin)
 
+class SmallGroupAdmin(BaseTranslationModelAdmin):
+    ordering = ('name', )
+    list_display = ('name', 'description')
+
+admin.site.register(SmallGroup, SmallGroupAdmin)
+
+class ServiceRecordingAdmin(PageAdmin):
+    def save_model(self, request, obj, form, change):
+        super(PageAdmin, self).save_model(request, obj, form, change)
+        bucket = 'macedonia-static-site'
+        prefix = 'recordings'
+        if obj.mp3_upload:
+            file_name = os.path.basename(obj.mp3_upload.path)
+            obj.mp3_location = send_to_s3_gateway(prefix, file_name, obj.mp3_upload.read())
+        if obj.ogg_upload:
+            file_name = os.path.basename(obj.ogg_upload.path)
+            obj.ogg_location = send_to_s3_gateway(prefix, file_name, obj.ogg_upload.read())
+        obj.save()
+        
+
+admin.site.register(ServiceRecording, ServiceRecordingAdmin)
+
+def all_of_days(week_day, week_time):
+    year = datetime.now(pytz.utc).year
+    d = datetime(year, 1, 1, tzinfo=pytz.utc)
+    d += timedelta(days=week_day - d.weekday())
+    while d.year == year:
+        yield d.replace(hour=week_time.hour, minute=week_time.minute)
+        d += timedelta(days=7)
+
+def weekly_individuals(weekly, new_date):
+    individual = weekly
+    individual.id = None
+    individual.page_ptr_id = None
+    individual.event_date = new_date
+    individual.weekly_worship = False
+    individual.save()
+    return individual
+
+
+class EventGalleryAdmin(PageAdmin):
+
+    def save_model(self, request, obj, form, change):
+        super(EventGalleryAdmin, self).save_model(request, obj, form, change)
+        if obj.weekly_worship:
+            individuals = [weekly_individuals(obj, cal_week)
+                for cal_week in all_of_days(obj.weekly_day, obj.scheduled_time)
+                if cal_week >= datetime.now(pytz.utc)]
+                
+
+admin.site.register(EventGallery, EventGalleryAdmin)

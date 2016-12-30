@@ -2,7 +2,7 @@
 
 {% load mezzanine_tags i18n %}
 
-{% block main %}
+{% block extracontent %}
 {{ block.super }}
 {% if request.GET.sent %}
     {% editable page.form.response %}

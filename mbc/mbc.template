@@ -19,7 +19,7 @@
     },
     "AmiId" : {
         "Type": "String",
-        "Default": "ami-2051294a"
+        "Default": "ami-b73b63a0"
     }
   },
   "Resources" : {

@@ -7,6 +7,9 @@ from django.contrib import admin
 from mezzanine.core.views import direct_to_template
 from mezzanine.conf import settings
 
+from mbc.models import EventGallery
+from mbc.views import DailyEventListView, WeeklyEventListView
+
 
 admin.autodiscover()
 
@@ -30,6 +33,8 @@ urlpatterns += patterns('',
     url("^tithing/pay", "mbc.paypal_views.send_payment", name="get_client_token_form"),
     url("^tithing/nonce", "mbc.paypal_views.save_nonce", name="get_client_token_form"),
     url("^tithing/", "mbc.views.online_giving", name="online_giving_form"),
+    url('^events/$', DailyEventListView.as_view(model=EventGallery), name='event-lists'),
+    url('^about/service-times/', WeeklyEventListView.as_view(model=EventGallery), name='weekly-event-lists'),
     # We don't want to presume how your homepage works, so here are a
     # few patterns you can use to set it up.
 

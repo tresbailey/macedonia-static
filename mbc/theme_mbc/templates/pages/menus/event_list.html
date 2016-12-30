@@ -1,10 +1,32 @@
-{% load pages_tags i18n mezzanine_tags %}
+{% load pages_tags i18n mezzanine_tags staticfiles mbc_filters %}
 {% spaceless %}
-{% for page in page_branch %}
-  <div class="categories">
-    <h2 class="softer standout" >{{ page.eventgallery.event_date }}</h2>
-    <a href="{{ page.get_absolute_url }}"><span class="softer">{{ page.title }}</span></a>
+{% for event in object_list %}
+<div class="categories list-alternator stretch-across">
+  <div>
+    <a href="{{ event.get_absolute_url }}">
+      <img class="img-responsive profile summary" src="{{ MEDIA_URL }}{% thumbnail event.gallery.images.first.file 131 75 %}">
+    </a>
   </div>
+  <div>
+    <h2 class="softer standout" >
+      <a href="{{ event.get_absolute_url }}">
+        {% if event.eventgallery.weekly_worship %}
+        <input type="hidden" name="scheduled_day" value="{{event.eventgallery.scheduled_day}}">
+        <input type="hidden" name="scheduled_time" value="{{event.eventgallery.scheduled_time}}">
+        <span class="weekly-date">{{event.eventgallery.scheduled_day}}</span>
+        {% else %}
+        {{ event.eventgallery.event_date }}
+        {% endif %}
+      </a>
+    </h2>
+    <div class="category-controls">
+      <a href="{{ event.get_absolute_url }}">
+        <span class="softer">{{ event.title }}</span>
+      </a>
+    </div>
+  </div>
+</a>
+</div>
 {% endfor %}
 {% endspaceless %}
 

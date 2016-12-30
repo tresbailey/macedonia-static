@@ -24,14 +24,18 @@ $(document).ready(function() {
     watch: '[data-header-scroll-watch]',
     watchOnce: false,
     onElementInView: function(data) {
-      $('#main-header').slideDown();
+      //$('#main-header').slideDown();
+      //$('.icon-lockup').slideDown();
+      $('#main-header').addClass('preliminary-menu');
       scroll_in_count++;
     },
     onElementOutOfView: function(data) {
       scroll_in_count--;
-      if (scroll_in_count == 0) {
-        $('#main-header').slideUp();
-      }
+      //if (scroll_in_count == 0) {
+        //$('#main-header').slideUp();
+        //$('.icon-lockup').slideUp();
+        $('#main-header').removeClass('preliminary-menu');
+      //}
     }
   });
   $('.toggleNav').on('click',function() {

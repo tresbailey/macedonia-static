@@ -1,5 +1,6 @@
 {% extends "pages/stretch-page.html" %}
-{% block awesomeheader %}
-<span class="fa fa-sun-o"></span>
+{% load pages_tags i18n %}
+{% block extracontent %}
+  {% page_menu "pages/menus/truncated.html" page %}
 {% endblock %}
 

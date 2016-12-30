@@ -10,8 +10,12 @@
        url('../fonts//NexaRustSlab-BlackShadow01-Free-webfont.svg#svgFontName') format('svg'); /* Legacy iOS */
 }
 
+@font-face {
+  font-family: 'Quadrat';
+  src: url('../fonts//Quadrat-Regular.ttf') format('truetype')
+}
 .rusty {
-    font-family: 'RustFont', Fallback, sans-serif;
+    font-family: 'Quadrat', Fallback, sans-serif;
     font-size: 60;
     color: #3F81BB;
 }
