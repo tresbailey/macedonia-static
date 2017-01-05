@@ -116,13 +116,15 @@ def all_of_days(week_day, week_time):
     year = datetime.now(pytz.utc).year
     d = datetime(year, 1, 1, tzinfo=pytz.utc)
     d += timedelta(days=week_day - d.weekday())
-    while d.year == year:
+    while d.year <= year:
+        logging.debug(d.replace(hour=week_time.hour, minute=week_time.minute))
         yield d.replace(hour=week_time.hour, minute=week_time.minute)
         d += timedelta(days=7)
 
-def weekly_individuals(weekly, new_date):
+def weekly_individuals(weekly, new_date, weekly_id):
     individual = weekly
     individual.id = None
+    individual.parent_id = weekly_id
     individual.page_ptr_id = None
     individual.event_date = new_date
     individual.weekly_worship = False
@@ -131,11 +133,13 @@ def weekly_individuals(weekly, new_date):
 
 
 class EventGalleryAdmin(PageAdmin):
+    ordering = ('event_date', )
 
     def save_model(self, request, obj, form, change):
         super(EventGalleryAdmin, self).save_model(request, obj, form, change)
         if obj.weekly_worship:
-            individuals = [weekly_individuals(obj, cal_week)
+            parent_id = obj.id
+            individuals = [weekly_individuals(obj, cal_week, parent_id)
                 for cal_week in all_of_days(obj.weekly_day, obj.scheduled_time)
                 if cal_week >= datetime.now(pytz.utc)]
                 
