@@ -6626,8 +6626,11 @@ footer {
   background-color: #011689;
 }
 
-.tagline-box {
+.window-height {
   height: 100vh;
+}
+
+.tagline-box {
   color: white;
   cursor: default;
   background-color: #645862;

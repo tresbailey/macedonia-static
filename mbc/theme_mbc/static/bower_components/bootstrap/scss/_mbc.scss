@@ -215,9 +215,11 @@ footer {
   }
 }
 
+.window-height {
+  height: 100vh;
+}
 
 .tagline-box {
-  height: 100vh;
   background-color: #645862;
   // background-image: url("/static/images/blurred-sanctuary.jpg");
   background-size: cover;

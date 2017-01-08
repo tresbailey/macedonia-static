@@ -1,14 +1,16 @@
 {% load pages_tags i18n mezzanine_tags staticfiles mbc_filters %}
 {% spaceless %}
-{% for event in object_list %}
-<div class="stretch-across">
-  <div>
-      {{ event.eventgallery.event_date }}
+<div class="flex-row" style="justify-content: space-around">
+  <h4>
+    Sunday Morning Services
+  </h4>
+  {% for event in object_list %}
+    <div>
+      {{ event.eventgallery.event_date|time:"P"  }}
       <span class="softer">{{ event.title }}</span>
-  </div>
-</a>
-</div>
+    </div>
 {% endfor %}
+</div>
 {% endspaceless %}
 
 
