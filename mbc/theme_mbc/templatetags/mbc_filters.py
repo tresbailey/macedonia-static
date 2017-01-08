@@ -1,6 +1,7 @@
 from django import template
 from django.template.defaultfilters import stringfilter
 from datetime import datetime
+from mbc.models import EventGallery
 
 register = template.Library()
 
@@ -31,3 +32,8 @@ def future_dates_only(the_date):
        return the_date
    else:
        return None
+
+
+@register.inclusion_tag('pages/coming-sunday.html')
+def coming_sunday(takes_context=False):
+    return {'object_list': EventGallery.sunday.all()}

@@ -1,4 +1,5 @@
 from collections import defaultdict
+from datetime import date, timedelta, datetime
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, redirect
 from django.views.generic import ListView
@@ -7,9 +8,10 @@ from json import dumps
 from mezzanine.utils.views import render, set_cookie, paginate
 from mbc import paypal_views
 from mbc.forms import GivingForm
-from mbc.models import Giving, EventGallery, DAY_OF_WEEK
+from mbc.models import Giving, EventGallery
 
 import logging
+import pytz
 logging.basicConfig(filename='example.log',level=logging.DEBUG)
 
 def online_giving(request, template='giving.html', form_class=GivingForm, extra_context=None):
@@ -51,11 +53,12 @@ class WeeklyEventListView(ListView):
 
     def get(self, request, *args, **kwargs):
         event_groups = defaultdict(list)
-        days = dict(DAY_OF_WEEK)
+        days = dict(utils.DAY_OF_WEEK)
         for event in self.get_queryset():
             event_groups[days[event.weekly_day]].append(event)
         self.object_list = dict(event_groups)
         logging.debug("Object list: %s" % self.object_list)
         context = self.get_context_data()
         return self.render_to_response(context)
+
 

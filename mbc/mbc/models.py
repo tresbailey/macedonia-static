@@ -1,7 +1,8 @@
-from datetime import datetime
+from datetime import datetime, time
 from django.db import models
 from django.forms.fields import ChoiceField
 from django.utils.translation import ugettext_lazy as _
+from mbc import utils
 from mezzanine.core.fields import RichTextField
 from mezzanine.galleries.models import Gallery, GalleryImage
 from mezzanine.pages.models import Page
@@ -43,17 +44,6 @@ class SmallGroup(models.Model):
 
 
 
-DAY_OF_WEEK = (
-    (0, 'Monday'),
-    (1, 'Tuesday'),
-    (2, 'Wednesday'),
-    (3, 'Thursday'),
-    (4, 'Friday'),
-    (5, 'Saturday'),
-    (6, 'Sunday')
-)
-
-
 class DailyManager(models.Manager):
   def get_queryset(self):
     items = super(DailyManager, self).get_queryset().filter(weekly_worship=False, event_date__gte=datetime.now()).order_by('event_date')
@@ -67,18 +57,26 @@ class WeeklyManager(models.Manager):
     logging.debug('weekly are: %s' % str(items))
     return items
 
+class SundayMorningManager(models.Manager):
+    def get_queryset(self):
+        sun_start = utils.all_of_days(6, time(5, 30))
+        sun_end = utils.all_of_days(6, time(13, 0))
+        items = super(SundayMorningManager, self).get_queryset().filter(event_date__range=[sun_start.next(), sun_end.next()]).order_by('event_date')
+        return items
+
 
 class EventGallery(Page):
 
     objects = models.Manager()
     daily = DailyManager()
     weekly = WeeklyManager()
+    sunday = SundayMorningManager()
 
     event_date = models.DateTimeField(verbose_name=_("Date of Event"))
     content = RichTextField(_("Content"))
     weekly_worship = models.NullBooleanField(verbose_name=_("Weekly Worship Event"))
     weekly_day = models.IntegerField(_("Weekly Day"), 
-        choices=DAY_OF_WEEK,
+        choices=utils.DAY_OF_WEEK,
         default=0,
         null=True,
         blank=True)

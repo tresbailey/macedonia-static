@@ -1,5 +1,4 @@
 from datetime import date, timedelta, datetime
-from dateutil import parser
 from django.contrib import admin
 import base64
 import csv
@@ -12,6 +11,7 @@ from mezzanine.core.admin import BaseTranslationModelAdmin
 from mezzanine.pages.admin import PageAdmin, PageAdminForm
 from mbc.models import EventGallery, ServiceRecording, \
     Newsletter, ContactList, SmallGroup
+from mbc import utils
 
 import logging
 logging.basicConfig(filename='example.log',level=logging.DEBUG)
@@ -112,14 +112,6 @@ class ServiceRecordingAdmin(PageAdmin):
 
 admin.site.register(ServiceRecording, ServiceRecordingAdmin)
 
-def all_of_days(week_day, week_time):
-    year = datetime.now(pytz.utc).year
-    d = datetime(year, 1, 1, tzinfo=pytz.utc)
-    d += timedelta(days=week_day - d.weekday())
-    while d.year <= year:
-        logging.debug(d.replace(hour=week_time.hour, minute=week_time.minute))
-        yield d.replace(hour=week_time.hour, minute=week_time.minute)
-        d += timedelta(days=7)
 
 def weekly_individuals(weekly, new_date, weekly_id):
     individual = weekly
@@ -140,7 +132,7 @@ class EventGalleryAdmin(PageAdmin):
         if obj.weekly_worship:
             parent_id = obj.id
             individuals = [weekly_individuals(obj, cal_week, parent_id)
-                for cal_week in all_of_days(obj.weekly_day, obj.scheduled_time)
+                for cal_week in utils.all_of_days(obj.weekly_day, obj.scheduled_time)
                 if cal_week >= datetime.now(pytz.utc)]
                 
 

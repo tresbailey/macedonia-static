@@ -1,0 +1,14 @@
+{% load pages_tags i18n mezzanine_tags staticfiles mbc_filters %}
+{% spaceless %}
+{% for event in object_list %}
+<div class="stretch-across">
+  <div>
+      {{ event.eventgallery.event_date }}
+      <span class="softer">{{ event.title }}</span>
+  </div>
+</a>
+</div>
+{% endfor %}
+{% endspaceless %}
+
+

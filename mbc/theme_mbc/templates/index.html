@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load pages_tags staticfiles %}
+{% load pages_tags staticfiles mbc_filters %}
 
 {% include 'banner.html' %}
 
@@ -7,39 +7,45 @@
 <!-- Main -->
 <article id="main">
 <div data-header-scroll-watch class="container-fluid primary-content tagline-box">
-<!--
-    <div class="preliminary-menu">
+  <!--
+  <div class="preliminary-menu">
     {% page_menu "pages/menus/primary.html" %}
-    </div>
--->
-    <div class="row">
-        <div class="col-md-12">
-            <div class="main-marquee">
-                <div class="jumbotron jumbotron-fluid">
-                    <div class="tagline-wrapper">
-                        {% if settings.SITE_TAGLINE %}
-                        <div class="main-tagline">
-                          <img src="{% static "images/macedonia-logo-white.png" %}" >
-                        </div>
-                        {% endif %}
-                    </div>
-                </div>
+  </div>
+  -->
+  <div class="row">
+    <div class="col-md-12">
+      <div class="main-marquee">
+        <div class="jumbotron jumbotron-fluid">
+          <div class="tagline-wrapper">
+            {% if settings.SITE_TAGLINE %}
+            <div class="main-tagline">
+              <img src="{% static "images/macedonia-logo-white.png" %}" >
             </div>
+            {% endif %}
+          </div>
         </div>
+      </div>
     </div>
+  </div>
 </div>
+<article id="next-worship" class="screen-box flex-column">
+<header class="special container">
+<h2 class="rusty">Sunday Morning Schedule</h2>
+</header>
+{% coming_sunday %}
+</article>
 
 <article id="we-believe" class="screen-box">
 <header class="special container">
 <div class="winger">
-    <span class="fa cross"></span>
+  <span class="fa cross"></span>
 </div>
 <h2 class="rusty">We Believe</h2>
 <div  >&nbsp;</div>
 <ul class="buttons">
-    <li>We believe the Holy Bible is the Word of God written by men divinely inspired and is the sole authority for life and faith</li>
-    <li>We believe there is one and only one true God who exists in the eternal triune (three persons); the Father, the Son, and the Holy Spirit</li>
-    <li>God as Father reigns with providential care over His universe, His creatures, and human history according to the purposes of His grace</li>
+  <li>We believe the Holy Bible is the Word of God written by men divinely inspired and is the sole authority for life and faith</li>
+  <li>We believe there is one and only one true God who exists in the eternal triune (three persons); the Father, the Son, and the Holy Spirit</li>
+  <li>God as Father reigns with providential care over His universe, His creatures, and human history according to the purposes of His grace</li>
 </ul>
 </header>
 </article>
@@ -68,23 +74,23 @@
 <article class="screen-box">
 <header class="special container">
 <div class="winger">
-    <span class="fa cross"></span>
+  <span class="fa cross"></span>
 </div>
 <h2 class="rusty">Location</h2>
 <div>&nbsp;</div>
 <ul class="buttons">
-    <li>216 Macedonia Road</li>
-    <li>Gaffney, SC 29341</li>
-    <li>864.489.7712</li>
-    <li><a href="mailto:contact@macedoniaofgaffney.com">contact@macedoniaofgaffney.com</a></li>
+  <li>216 Macedonia Road</li>
+  <li>Gaffney, SC 29341</li>
+  <li>864.489.7712</li>
+  <li><a href="mailto:contact@macedoniaofgaffney.com">contact@macedoniaofgaffney.com</a></li>
 </ul>
 </article>
 
 <script>
-$(document).ready(function() {
+  $(document).ready(function() {
     //$('#main-header').hide();
     $('#main-header').addClass('preliminary-menu');
-});
+  });
 </script>
 {% endblock main %}
 
