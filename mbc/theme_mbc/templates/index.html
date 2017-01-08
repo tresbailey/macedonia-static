@@ -45,27 +45,6 @@
 </header>
 </article>
 
-<article class="screen-box blued">
-<div>&nbsp;</div>
-<header class="special container">
-<header>
-<h2>We've got several groups and worship opportunities to help you find a place that you feel at home.</h2>
-</header>
-{% for page in page_branch %}
-{% if page.title == 'Ministries' %}
-{% page_menu "pages/menus/graphical.html" page %} 
-{% endif %}
-{% endfor %}
-<footer>
-{% for page in page_branch %}
-{% if page.title == 'Events' %}
-<div>&nbsp;</div>
-<a href="events" class="btn btn-secondary btn-lg btn-block">Find Out More About Our Church Events</a>
-{% endif %}
-{% endfor %}
-</footer>
-</header>
-</article>
 <article class="screen-box">
 <header class="special container">
 <div class="winger">
