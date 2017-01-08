@@ -6,7 +6,7 @@ from django.views.generic import ListView
 from django.views.generic.edit import CreateView
 from json import dumps
 from mezzanine.utils.views import render, set_cookie, paginate
-from mbc import paypal_views
+from mbc import paypal_views, utils
 from mbc.forms import GivingForm
 from mbc.models import Giving, EventGallery
 

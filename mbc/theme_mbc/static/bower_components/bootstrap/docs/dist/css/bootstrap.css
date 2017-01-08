@@ -7669,5 +7669,8 @@ img.profile.summary {
     -webkit-flex-direction: column;
         -ms-flex-direction: column;
   }
+  .dropdown-toggle {
+    display: none;
+  }
 }
 /*# sourceMappingURL=bootstrap.css.map */
