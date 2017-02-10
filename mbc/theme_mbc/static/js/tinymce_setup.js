@@ -109,8 +109,43 @@ jQuery(function($) {
             file_browser_callback: custom_file_browser,
             content_css: window.__tinymce_css,
             theme: 'modern',
-            toolbar: 'undo redo cut copy paste pastetext | insert | styleselect | bold italic strikethrough superscript subscript removeformat | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image |print preview media | forecolor backcolor emoticons | table | code',
+            setup: function (editor) {
+              editor.addButton('macedonia', {
+                type: 'menubutton',
+                text: 'Macedonia',
+                icon: false,
+                menu: [{
+                  text: 'Screen Width',
+                  onclick: function () {
+                    var text = editor.selection.getContent({'format': 'html'});
+                    if(text && text.length > 0) {
+                      editor.insertContent('<article class="screen-box flex-column">'+text+'</article>');
+                    }
+                  }
+                },
+                {
+                  text: 'Logo Header',
+                  onclick: function () {
+                    var text = editor.selection.getContent({'format': 'html'});
+                    if(text && text.length > 0) {
+                      cross = editor.dom.create('span', {class: 'fa cross'});
+                      winger = editor.dom.create('div', {class: 'winger'});
+                      winger.appendChild(cross);
+                      header = editor.dom.create('header', {class: 'special'});
+                      header.appendChild(winger);
+                      rusty = editor.dom.create('h2', {class: 'rusty'}, text);
+                      header.appendChild(rusty);
+                      editor.selection.setContent(header.outerHTML);
+                    }
+                  }
+                }]
+              });
+            },
+            toolbar: 'undo redo cut copy paste pastetext | insert | styleselect | bold italic strikethrough superscript subscript removeformat | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image |print preview media | forecolor backcolor emoticons | table | code | macedonia ',
             image_advtab: true,
+            templates: [
+              {title: 'Cross Header', description: 'Cross header', url: '/static/snippets/cross-header.html'}
+            ],
             style_formats: [
                 {
                   title: 'Image Left',
@@ -127,6 +162,11 @@ jQuery(function($) {
                     'float': 'right',
                     'margin': '0 0 10px 10px'
                   }
+                },
+                {
+                  title: 'Screen Wide',
+                  selector: 'div,p,h2,h3,h4,h5,h6',
+                  classes: 'screen-box'
                 }
             ].concat(default_formats)
         });
