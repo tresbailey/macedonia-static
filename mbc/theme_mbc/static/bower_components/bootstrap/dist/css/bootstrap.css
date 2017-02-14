@@ -7468,6 +7468,31 @@ img.profile.summary {
   padding-left: .5rem;
 }
 
+.template-content {
+  margin: auto;
+}
+
+.template-box {
+  width: 100vw;
+  padding: 2rem;
+  cursor: default;
+  -webkit-background-size: cover;
+          background-size: cover;
+}
+
+.template-box:nth-child(even) {
+  background-color: initial;
+}
+
+.template-box:nth-child(odd) {
+  color: white;
+  background-color: #645862;
+}
+
+.template-box:nth-child(odd) .rusty {
+  color: white;
+}
+
 @media all and (max-width: 850px) {
   .main-lockup {
             flex-direction: column;

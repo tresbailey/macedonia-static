@@ -144,7 +144,8 @@ jQuery(function($) {
             toolbar: 'undo redo cut copy paste pastetext | insert | styleselect | bold italic strikethrough superscript subscript removeformat | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image |print preview media | forecolor backcolor emoticons | table | code | macedonia ',
             image_advtab: true,
             templates: [
-              {title: 'Cross Header', description: 'Cross header', url: '/static/snippets/cross-header.html'}
+              {title: 'Image Left', description: 'Image Left', url: '/static/snippets/template-image-left.html'},
+              {title: 'Image Right', description: 'Image Right', url: '/static/snippets/template-image-right.html'}
             ],
             style_formats: [
                 {
