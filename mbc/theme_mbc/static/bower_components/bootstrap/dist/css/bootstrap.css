@@ -7697,5 +7697,13 @@ img.profile.summary {
   .dropdown-toggle {
     display: none;
   }
+  .template-box .flex-row {
+            flex-direction: column;
+
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+  }
 }
 /*# sourceMappingURL=bootstrap.css.map */

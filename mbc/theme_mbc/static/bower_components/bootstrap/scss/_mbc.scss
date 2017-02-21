@@ -951,5 +951,11 @@ img.profile {
   .dropdown-toggle {
     display: none;
   }
+  .template-box {
+    .flex-row {
+      flex-direction: column;
+    }
+  }
+
 }
 
