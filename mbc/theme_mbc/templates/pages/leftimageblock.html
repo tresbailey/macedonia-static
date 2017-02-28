@@ -5,9 +5,11 @@
 <h2 class="rusty">{{page.title}}</h2>
 </header>
 <div class="container flex-row">
+  {% if page.leftimageblock.file %}
   <div class="template-image">
     <img src="/static/media/{{ page.leftimageblock.file}}">
   </div>
+  {% endif %}
   <div class="template-content">
     <h4>{{page.leftimageblock.sub_header}}</h4>
     {{ page.leftimageblock.content|richtext_filters|safe }}

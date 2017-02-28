@@ -7,21 +7,9 @@
 <div class="softer">
 {{ page.blockypage.content|richtext_filters|safe }}
 </div>
-<div class="page-specific">
-  {% for page in page.children.published %}
-  <input type="hidden" name="childSlug" value="/{{page.slug}}"/>
-  {% endfor %}
-</div>
+{% for page in page.children.published %}
+<input type="hidden" name="childSlug" value="/{{page.slug}}"/>
+{% endfor %}
 
-<script>
-  $(document).ready(function() {
-    $('input[name="childSlug"]').each(function(index, ele) {
-      console.log($(ele).val());
-      $.ajax($(ele).val(), {async: true}).done(function( data ) {
-        console.log(data);
-        $('.page-specific').append(data);
-      });
-    });
-  });
-</script>
+<script src="/static/js/async-loader.js"/>
 {% endblock %}

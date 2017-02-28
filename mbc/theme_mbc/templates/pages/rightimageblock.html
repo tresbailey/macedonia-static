@@ -9,9 +9,11 @@
     <h4>{{page.rightimageblock.sub_header}}</h4>
     {{ page.rightimageblock.content|richtext_filters|safe }}
   </div>
+  {% if page.rightimageblock.file %}
   <div class="template-image">
     <img src="/static/media/{{ page.rightimageblock.file}}">
   </div>
+  {% endif %}
 </div>
 </div>
 

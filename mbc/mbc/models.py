@@ -92,7 +92,7 @@ class BlockyPage(Page, RichText):
 
 class LeftImageBlock(Page, RichText):
     sub_header = models.CharField(_("Block Sub-Header"), max_length=50, blank=True, null=True)
-    file = FileField(_("File"), max_length=200, format="Image",
+    file = FileField(_("File"), max_length=200, format="Image", blank=True, null=True,
         upload_to=upload_to("galleries.GalleryImage.file", "galleries"))
 
 
