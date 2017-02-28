@@ -99,7 +99,7 @@ jQuery(function($) {
                 'advlist autolink lists link image charmap print preview hr anchor pagebreak',
                 'searchreplace wordcount visualblocks visualchars code fullscreen',
                 'insertdatetime media nonbreaking save table contextmenu directionality',
-                'emoticons template paste textcolor colorpicker textpattern imagetools videoembed'
+                'emoticons template paste textcolor colorpicker textpattern imagetools'
             ],
             link_list: '/displayable_links.js',
             relative_urls: false,
@@ -141,8 +141,7 @@ jQuery(function($) {
                 }]
               });
             },
-            media_live_embeds: true,
-            toolbar: 'undo redo cut copy paste pastetext | insert | styleselect | bold italic strikethrough superscript subscript removeformat | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image |print preview media | forecolor backcolor emoticons | table | code | macedonia | videoembed',
+            toolbar: 'undo redo cut copy paste pastetext | insert | styleselect | bold italic strikethrough superscript subscript removeformat | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image |print preview media | forecolor backcolor emoticons | table | code | macedonia ',
             image_advtab: true,
             templates: [
               {title: 'Image Left', description: 'Image Left', url: '/static/snippets/template-image-left.html'},
