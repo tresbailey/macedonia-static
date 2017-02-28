@@ -6,11 +6,11 @@
 </header>
 <div class="container flex-row">
   {% if page.leftimageblock.file %}
-  <div class="template-image">
+  <div class="template-image" style="width: {{page.leftimageblock.image_width}}vw">
     <img class="img-fluid" src="/static/media/{{ page.leftimageblock.file}}">
   </div>
   {% elif page.leftimageblock.image_link %} 
-  <div class="template-image">
+  <div class="template-image" style="width: {{page.leftimageblock.image_width}}vw">
     <img class="img-fluid" src="{{ page.leftimageblock.image_link}}">
   </div>
   {% endif %}

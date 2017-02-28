@@ -10,11 +10,11 @@
     {{ page.rightimageblock.content|richtext_filters|safe }}
   </div>
   {% if page.rightimageblock.file %}
-  <div class="template-image">
+  <div class="template-image" style="width: {{page.rightimageblock.image_width}}vw">
     <img class="img-fluid" src="/static/media/{{ page.rightimageblock.file}}">
   </div>
   {% elif page.rightimageblock.image_link %} 
-  <div class="template-image">
+  <div class="template-image" style="width: {{page.rightimageblock.image_width}}vw">
     <img class="img-fluid" src="{{ page.rightimageblock.image_link}}">
   </div>
   {% endif %}

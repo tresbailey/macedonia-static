@@ -7472,25 +7472,25 @@ img.profile.summary {
   margin: auto;
 }
 
-.template-box {
+.asyncSlug:nth-child(even) .template-box {
+  background-color: initial;
+}
+
+.asyncSlug:nth-child(odd) .template-box {
+  color: white;
+  background-color: #645862;
+}
+
+.asyncSlug:nth-child(odd) .template-box .rusty {
+  color: white;
+}
+
+.asyncSlug .template-box {
   width: 100vw;
   padding: 2rem;
   cursor: default;
   -webkit-background-size: cover;
           background-size: cover;
-}
-
-.template-box:nth-child(even) {
-  background-color: initial;
-}
-
-.template-box:nth-child(odd) {
-  color: white;
-  background-color: #645862;
-}
-
-.template-box:nth-child(odd) .rusty {
-  color: white;
 }
 
 @media all and (max-width: 850px) {

@@ -8,7 +8,9 @@
 {{ page.blockypage.content|richtext_filters|safe }}
 </div>
 {% for page in page.children.published %}
-<input type="hidden" name="childSlug" value="/{{page.slug}}"/>
+<div class="asyncSlug">
+  <input type="hidden" name="childSlug" value="/{{page.slug}}"/>
+</div>
 {% endfor %}
 
 <script src="/static/js/async-loader.js"/>

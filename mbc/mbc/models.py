@@ -95,6 +95,7 @@ class LeftImageBlock(Page, RichText):
     file = FileField(_("File"), max_length=200, format="Image", blank=True, null=True,
         upload_to=upload_to("galleries.GalleryImage.file", "galleries"))
     image_link = models.URLField(_("Image Link"), blank=True, null=True)
+    image_width = models.IntegerField(_("Image Width"), default=25)
 
 
 class RightImageBlock(Page, RichText):
@@ -102,6 +103,7 @@ class RightImageBlock(Page, RichText):
     file = FileField(_("File"), max_length=200, format="Image", blank=True, null=True,
         upload_to=upload_to("galleries.GalleryImage.file", "galleries"))
     image_link = models.URLField(_("Image Link"), blank=True, null=True)
+    image_width = models.IntegerField(_("Image Width"), default=25)
 
 
 class ServiceRecording(Page):
