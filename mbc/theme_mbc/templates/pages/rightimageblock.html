@@ -11,11 +11,11 @@
   </div>
   {% if page.rightimageblock.file %}
   <div class="template-image">
-    <img src="/static/media/{{ page.rightimageblock.file}}">
+    <img class="img-fluid" src="/static/media/{{ page.rightimageblock.file}}">
   </div>
   {% elif page.rightimageblock.image_link %} 
   <div class="template-image">
-    <img src="{{ page.rightimageblock.image_link}}">
+    <img class="img-fluid" src="{{ page.rightimageblock.image_link}}">
   </div>
   {% endif %}
 </div>

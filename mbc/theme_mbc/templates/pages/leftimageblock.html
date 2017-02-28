@@ -7,11 +7,11 @@
 <div class="container flex-row">
   {% if page.leftimageblock.file %}
   <div class="template-image">
-    <img src="/static/media/{{ page.leftimageblock.file}}">
+    <img class="img-fluid" src="/static/media/{{ page.leftimageblock.file}}">
   </div>
   {% elif page.leftimageblock.image_link %} 
   <div class="template-image">
-    <img src="{{ page.leftimageblock.image_link}}">
+    <img class="img-fluid" src="{{ page.leftimageblock.image_link}}">
   </div>
   {% endif %}
   <div class="template-content">
