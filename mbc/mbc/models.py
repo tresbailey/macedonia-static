@@ -3,9 +3,11 @@ from django.db import models
 from django.forms.fields import ChoiceField
 from django.utils.translation import ugettext_lazy as _
 from mbc import utils
-from mezzanine.core.fields import RichTextField
-from mezzanine.galleries.models import Gallery, GalleryImage
-from mezzanine.pages.models import Page
+from mezzanine.core.fields import RichTextField, FileField
+from mezzanine.core.models import RichText
+from mezzanine.galleries.models import Gallery, GalleryImage, BaseGallery
+from mezzanine.pages.models import Page, RichTextPage
+from mezzanine.utils.models import upload_to
 
 import logging
 import pytz
@@ -82,6 +84,23 @@ class EventGallery(Page):
         blank=True)
     scheduled_time = models.TimeField(verbose_name=_("Weekly Scheduled Time"), null=True)
     group = models.ForeignKey(SmallGroup, on_delete=models.CASCADE, null=True, blank=True)
+
+
+class BlockyPage(Page, RichText):
+    pass
+
+
+class LeftImageBlock(Page, RichText):
+    sub_header = models.CharField(_("Block Sub-Header"), max_length=50, blank=True, null=True)
+    file = FileField(_("File"), max_length=200, format="Image",
+        upload_to=upload_to("galleries.GalleryImage.file", "galleries"))
+
+
+class RightImageBlock(Page, RichText):
+    sub_header = models.CharField(_("Block Sub-Header"), max_length=50, blank=True, null=True)
+    file = FileField(_("File"), max_length=200, format="Image",
+        upload_to=upload_to("galleries.GalleryImage.file", "galleries"))
+
 
 class ServiceRecording(Page):
     service_date = models.DateTimeField(verbose_name=_("Date of Service"))
