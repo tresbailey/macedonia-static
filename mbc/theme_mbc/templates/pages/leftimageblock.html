@@ -9,6 +9,10 @@
   <div class="template-image">
     <img src="/static/media/{{ page.leftimageblock.file}}">
   </div>
+  {% elif page.leftimageblock.image_link %} 
+  <div class="template-image">
+    <img src="{{ page.leftimageblock.image_link}}">
+  </div>
   {% endif %}
   <div class="template-content">
     <h4>{{page.leftimageblock.sub_header}}</h4>

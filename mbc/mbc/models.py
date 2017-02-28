@@ -94,12 +94,14 @@ class LeftImageBlock(Page, RichText):
     sub_header = models.CharField(_("Block Sub-Header"), max_length=50, blank=True, null=True)
     file = FileField(_("File"), max_length=200, format="Image", blank=True, null=True,
         upload_to=upload_to("galleries.GalleryImage.file", "galleries"))
+    image_link = models.URLField(_("Image Link"), blank=True, null=True)
 
 
 class RightImageBlock(Page, RichText):
     sub_header = models.CharField(_("Block Sub-Header"), max_length=50, blank=True, null=True)
-    file = FileField(_("File"), max_length=200, format="Image",
+    file = FileField(_("File"), max_length=200, format="Image", blank=True, null=True,
         upload_to=upload_to("galleries.GalleryImage.file", "galleries"))
+    image_link = models.URLField(_("Image Link"), blank=True, null=True)
 
 
 class ServiceRecording(Page):

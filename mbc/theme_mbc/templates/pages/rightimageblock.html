@@ -13,6 +13,10 @@
   <div class="template-image">
     <img src="/static/media/{{ page.rightimageblock.file}}">
   </div>
+  {% elif page.rightimageblock.image_link %} 
+  <div class="template-image">
+    <img src="{{ page.rightimageblock.image_link}}">
+  </div>
   {% endif %}
 </div>
 </div>
