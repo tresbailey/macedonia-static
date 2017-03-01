@@ -1,0 +1,19 @@
+{% load pages_tags mezzanine_tags i18n future %}
+
+<header class="special container">
+<h2 class="rusty">{{page.title}}</h2>
+</header>
+<div class="container flex-column">
+  {% if page.videoblock.video_link %} 
+  <div class="template-image">
+    <iframe width="560" height="315" src="{{page.videoblock.video_link}}" frameborder="0" allowfullscreen></iframe>
+  </div>
+  {% endif %}
+  <div class="template-content">
+    <h4>{{page.videoblock.sub_header}}</h4>
+    {{ page.videoblock.content|richtext_filters|safe }}
+  </div>
+</div>
+</div>
+
+

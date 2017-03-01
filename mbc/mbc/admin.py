@@ -11,7 +11,7 @@ from mezzanine.core.admin import BaseTranslationModelAdmin, TabularDynamicInline
 from mezzanine.pages.admin import PageAdmin, PageAdminForm
 from mezzanine.galleries.admin import GalleryAdmin
 from mbc.models import EventGallery, ServiceRecording, \
-    Newsletter, ContactList, SmallGroup, BlockyPage, LeftImageBlock, RightImageBlock
+    Newsletter, ContactList, SmallGroup, BlockyPage, LeftImageBlock, RightImageBlock, VideoBlock
 from mbc import utils
 
 import logging
@@ -142,3 +142,4 @@ admin.site.register(EventGallery, EventGalleryAdmin)
 admin.site.register(BlockyPage, PageAdmin)
 admin.site.register(LeftImageBlock, PageAdmin)
 admin.site.register(RightImageBlock, PageAdmin)
+admin.site.register(VideoBlock, PageAdmin)

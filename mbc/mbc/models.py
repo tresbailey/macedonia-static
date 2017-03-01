@@ -106,6 +106,12 @@ class RightImageBlock(Page, RichText):
     image_width = models.IntegerField(_("Image Width"), default=25)
 
 
+class VideoBlock(Page, RichText):
+    sub_header = models.CharField(_("Block Sub-Header"), max_length=50, blank=True, null=True)
+    file = FileField(_("File"), max_length=200, format="Image", blank=True, null=True,
+        upload_to=upload_to("galleries.GalleryImage.file", "galleries"))
+    video_link = models.URLField(_("Image Link"), blank=True, null=True)
+
 class ServiceRecording(Page):
     service_date = models.DateTimeField(verbose_name=_("Date of Service"))
     preacher_name = models.CharField(_("Preacher of the Service"), max_length=50, blank=True, null=True)
