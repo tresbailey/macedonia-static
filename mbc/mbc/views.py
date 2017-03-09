@@ -22,7 +22,8 @@ def online_giving(request, template='giving.html', form_class=GivingForm, extra_
     begin_giving = form_class(request.POST or None, initial=initial_data)
     context = {
         'editable_obj': model,
-        'begin_giving': begin_giving
+        'begin_giving': begin_giving,
+        'page': {'title': 'Giving'}
     }
     if 'POST' == request.method:
         if begin_giving.is_valid():

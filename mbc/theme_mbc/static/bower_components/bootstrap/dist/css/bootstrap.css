@@ -7472,16 +7472,16 @@ img.profile.summary {
   margin: auto;
 }
 
-.asyncSlug:nth-child(even) .template-box {
+.asyncSlug:nth-child(odd) .template-box {
   background-color: initial;
 }
 
-.asyncSlug:nth-child(odd) .template-box {
+.asyncSlug:nth-child(even) .template-box {
   color: white;
   background-color: #645862;
 }
 
-.asyncSlug:nth-child(odd) .template-box .rusty {
+.asyncSlug:nth-child(even) .template-box .rusty {
   color: white;
 }
 
